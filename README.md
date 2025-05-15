@@ -1,2 +1,3 @@
 # calpy
-Calculator in Python
+
+Calculator in Python using tkinter for GUI.
