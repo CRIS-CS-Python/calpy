@@ -3,13 +3,15 @@ Unit tests for calculator functions
 '''
 
 import unittest
-from calc import calculate
+from calc import *
 
 class TestCalc(unittest. TestCase):
 
     def test_add(self):
         self.assertEqual(calculate(['7', '+', '3']), 10)
 
+        with self.assertRaises(CalcError):
+            calculate('not a list')
     '''
     def test_subtract(self):
         pass
