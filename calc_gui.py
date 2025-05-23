@@ -41,7 +41,7 @@ def insert_text(value):
 root = Tk()
 root.title("Calculator")
 
-mainframe = ttk.Frame(root, padding="3 3 3 90")
+mainframe = ttk.Frame(root, padding="12 12 12 12")
 mainframe.grid(column=0, row=0, sticky=(N, W, E, S))
 root.columnconfigure(0, weight=1)
 root.rowconfigure(0, weight=1)
@@ -49,8 +49,8 @@ root.rowconfigure(0, weight=1)
 #A frame to input the equation
 
 feet = StringVar()
-feet_entry = ttk.Entry(mainframe, width=14, textvariable=feet)
-feet_entry.grid(column=1, row=1, sticky=(W, E))
+feet_entry = ttk.Entry(mainframe, textvariable=feet)
+feet_entry.grid(column=1, row=1, columnspan=4, sticky=(W, E))
 
 #Text display
 
@@ -70,6 +70,19 @@ ttk.Button(mainframe, text="7", command=lambda: insert_text("7")).grid(column=1,
 ttk.Button(mainframe, text="8", command=lambda: insert_text("8")).grid(column=2, row=5, sticky=W)
 ttk.Button(mainframe, text="9", command=lambda: insert_text("9")).grid(column=3, row=5, sticky=W)
 ttk.Button(mainframe, text="0", command=lambda: insert_text("0")).grid(column=2, row=6, sticky=W)
+
+#Button for operators to create the equation
+
+ttk.Button(mainframe , text="÷", command=lambda: insert_text("/")).grid(column=4, row=3, sticky=W)
+ttk.Button(mainframe , text="×", command=lambda: insert_text("*")).grid(column=4, row=4, sticky=W)
+ttk.Button(mainframe , text="-", command=lambda: insert_text("-")).grid(column=4, row=5, sticky=W)
+ttk.Button(mainframe , text="+", command=lambda: insert_text("+")).grid(column=4, row=6, sticky=W)
+ttk.Button(mainframe , text="=", command=calculate).grid(column=4, row=7, sticky=W)
+ttk.Button(mainframe , text="AC", command=lambda: feet_entry.delete(0, END)).grid(column=1, row=6, sticky=W)
+ttk.Button(mainframe , text="Del", command=lambda: feet_entry.delete(len(feet_entry.get())-1, END)).grid(column=1, row=7, sticky=W)
+ttk.Button(mainframe , text="x^" , command=lambda: insert_text("**")).grid(column=2, row=7, sticky=W)
+ttk.Button(mainframe , text=".", command=lambda: insert_text(".")).grid(column=3, row=6, sticky=W)
+ttk.Button(mainframe , text="√ ", command=lambda: insert_text("UNFINISHED")).grid(column=3, row=7, sticky=W)
 
 for child in mainframe.winfo_children(): 
     child.grid_configure(padx=5, pady=5)
