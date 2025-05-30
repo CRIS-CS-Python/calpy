@@ -29,12 +29,12 @@ def left_to_right_eval(expr):
         return "Error"
 
 def calculate(*args):
-    expr = feet_entry.get()
+    expr = expression_entry.get()
     result = left_to_right_eval(expr)
     result_var.set(result)
 
 def insert_text(value):
-    feet_entry.insert(END, value)
+    expression_entry.insert(END, value)
 
 #Size of the window
 
@@ -48,9 +48,9 @@ root.rowconfigure(0, weight=1)
 
 #A frame to input the equation
 
-feet = StringVar()
-feet_entry = ttk.Entry(mainframe, textvariable=feet)
-feet_entry.grid(column=1, row=1, columnspan=4, sticky=(W, E))
+expression = StringVar()
+expression_entry = ttk.Entry(mainframe, textvariable=expression)
+expression_entry.grid(column=1, row=1, columnspan=4, sticky=(W, E))
 
 #Text display
 
@@ -78,8 +78,8 @@ ttk.Button(mainframe , text="×", command=lambda: insert_text("*")).grid(column=
 ttk.Button(mainframe , text="-", command=lambda: insert_text("-")).grid(column=4, row=5, sticky=W)
 ttk.Button(mainframe , text="+", command=lambda: insert_text("+")).grid(column=4, row=6, sticky=W)
 ttk.Button(mainframe , text="=", command=calculate).grid(column=4, row=7, sticky=W)
-ttk.Button(mainframe , text="AC", command=lambda: feet_entry.delete(0, END)).grid(column=1, row=6, sticky=W)
-ttk.Button(mainframe , text="Del", command=lambda: feet_entry.delete(len(feet_entry.get())-1, END)).grid(column=1, row=7, sticky=W)
+ttk.Button(mainframe , text="AC", command=lambda: expression_entry.delete(0, END)).grid(column=1, row=6, sticky=W)
+ttk.Button(mainframe , text="Del", command=lambda: expression_entry.delete(len(expression_entry.get())-1, END)).grid(column=1, row=7, sticky=W)
 ttk.Button(mainframe , text="x^" , command=lambda: insert_text("**")).grid(column=2, row=7, sticky=W)
 ttk.Button(mainframe , text=".", command=lambda: insert_text(".")).grid(column=3, row=6, sticky=W)
 ttk.Button(mainframe , text="√ ", command=lambda: insert_text("UNFINISHED")).grid(column=3, row=7, sticky=W)
@@ -87,7 +87,7 @@ ttk.Button(mainframe , text="√ ", command=lambda: insert_text("UNFINISHED")).g
 for child in mainframe.winfo_children(): 
     child.grid_configure(padx=5, pady=5)
 
-feet_entry.focus()
+expression_entry.focus()
 root.bind("<Return>", calculate)
 
 root.mainloop()
